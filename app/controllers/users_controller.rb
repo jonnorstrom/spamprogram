@@ -38,6 +38,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def weekly_newsletter
+    User.all.each {|u| UserMailer.weekly_newsletter(u).deliver_now }
+    redirect_to users_path
+  end
+
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
