@@ -61,7 +61,12 @@
         $form.trigger('reset');
         $('.new-user-form').hide();
         console.log(response);
-        var new_td = `<td>${response.user.name}</td><td>${response.user.email}</td><td>${response.user.username}</td><td>${response.user.name}</td><td>${response.user.name}</td><td>${response.user.name}</td>`
+        var new_td = `<td>${response.user.name}</td>
+        <td>${response.user.email}</td>
+        <td>${response.user.username}</td>
+        <td><a href='/users/${response.user.id}'>Show</a></td>
+        <td><a href='/users/${response.user.id}/edit'>Edit</a></td>
+        <td><a href='/users/${response.user.id}' rel='nofollow' data-method='delete'>Destroy</a></td>`
         $('tbody').append(new_td);
       } else {
         // do the thing I wanna do when it didn't quite work out
