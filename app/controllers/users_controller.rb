@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @user = User.new
   end
 
   # GET /users/1
@@ -24,6 +25,11 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    p "============================\n============================\n============================"
+    p "whoo got it"
+    p "here's my parameters: "
+    p params
+    p "============================\n============================\n============================"
     @user = User.new(user_params)
 
     respond_to do |format|

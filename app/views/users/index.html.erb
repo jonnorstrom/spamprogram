@@ -26,14 +26,35 @@
   </tbody>
 </table>
 
-<div class="new-user-form"></div>
+<div class="new-user-form" style="display: none;">
+  <%= render 'form', user: @user %>
+</div>
 
 <br>
 
-<%= link_to 'New User', new_user_path %> <br/>
+<%= link_to 'New User', new_user_path, {class: "new-user-link"} %> <br/>
 <%= link_to 'Send Weekly Newsletter', spam_path %>
 
 <script type="text/javascript">
-  console.log($);
+  $('.new-user-link').on('click', function(evntObj){
+    evntObj.preventDefault();
+    $('.new-user-form').show();
+  })
+
+  $('.new-user-submit').on('click', function(evntObj){
+    evntObj.preventDefault();
+    var $form = $(this).closest('form');
+    var action = $form.attr('action');
+    var method = $form.attr('method');
+    var data = $form.serialize();
+
+    console.log('sending ajax now.')
+    $.ajax({
+      data: data,
+      type: method,
+      url: action,
+      dataType: 'json'
+    })
+  })
 
 </script>
