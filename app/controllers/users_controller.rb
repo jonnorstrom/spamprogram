@@ -30,13 +30,13 @@ class UsersController < ApplicationController
     p "here's my parameters: "
     p params
     p "============================\n============================\n============================"
-    @user = User.new(user_params)
+    @new_user = User.new(user_params)
 
     respond_to do |format|
-      if @user.save
-        UserMailer.welcome_email(@user).deliver_now
-        format.html { redirect_to @user, notice: 'User was successfully created.' } # no ajax
-        format.json { render :show, status: :created, location: @user } # ajax
+      if @new_user.save
+        # UserMailer.welcome_email(@user).deliver_now
+        format.html { redirect_to @new_user, notice: 'User was successfully created.' } # no ajax
+        format.json { render json: { message: "User created successfully", user: @new_user } } # ajax
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
